@@ -1,10 +1,6 @@
 # create-index
 
-[![NPM version](http://img.shields.io/npm/v/create-index.svg?style=flat-square)](https://www.npmjs.org/package/create-index)
-[![Travis build status](http://img.shields.io/travis/gajus/create-index/master.svg?style=flat-square)](https://travis-ci.org/gajus/create-index)
-[![js-canonical-style](https://img.shields.io/badge/code%20style-canonical-blue.svg?style=flat-square)](https://github.com/gajus/canonical)
-
-`create-index` program creates (and maintains) ES6 `./index.js` file in target directories that imports and exports sibling files and directories.
+`create-index` program creates (and maintains) CommonJS `./index.js` file in target directories that imports and exports sibling files and directories.
 
 ## Example
 
@@ -36,8 +32,13 @@ This created `index.js` with:
 ```js
 // @create-index
 
-export { default as bar } from './bar.js';
-export { default as foo } from './foo.js';
+const bar = require('./bar.js');
+const foo = require('./foo.js');
+
+module.exports = {
+  bar,
+  foo
+}
 
 ```
 
@@ -66,9 +67,15 @@ This have updated `index.js` file:
 ```js
 // @create-index
 
-export { default as bar } from './bar.js';
-export { default as baz } from './baz.js';
-export { default as foo } from './foo.js';
+const bar = require('./bar.js');
+const baz = require('./baz.js');
+const foo = require('./foo.js');
+
+module.exports = {
+  bar,
+  baz,
+  foo
+}
 
 ```
 
@@ -190,10 +197,10 @@ Given the above directory contents, `./index.js` will be:
 ```js
 // @create-index
 
-import { default as bar } from './bar';
-import { default as foo } from './foo.js';
+const bar = require('./bar');
+const foo = require('./foo.js');
 
-export {
+module.exports {
     bar,
     foo
 };
@@ -232,10 +239,10 @@ Given the above directory contents, after running `create-index` with `--update`
 ```js
 // @create-index {"ignore": ["/baz.js$/"]}
 
-import { default as bar } from './bar.js';
-import { default as foo } from './foo.js';
+const bar = require('./bar');
+const foo = require('./foo.js');
 
-export {
+module.exports {
     bar,
     foo
 };
