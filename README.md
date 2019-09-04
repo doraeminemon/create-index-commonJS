@@ -1,6 +1,6 @@
 # create-index
 
-`create-index` program creates (and maintains) CommonJS `./index.js` file in target directories that imports and exports sibling files and directories.
+`create-index` program creates (and maintains) CommonJS `./index.js` file in target directories that imports and exports sibling files and directories. Fork of https://github.com/gajus/create-index
 
 ## Example
 
