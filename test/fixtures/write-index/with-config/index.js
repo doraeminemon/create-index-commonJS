@@ -1,4 +1,8 @@
 // @create-index {"ignore":["/bar.js$/"]}
 
-export { default as foo } from './foo.js';
+const foo = require('./foo');
+
+module.exports = {
+  foo,
+};
 

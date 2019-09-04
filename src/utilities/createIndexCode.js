@@ -14,12 +14,24 @@ const buildExportBlock = (files) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+    return 'const ' + safeVariableName(fileName) + ' = require(\'./' + safeVariableName(fileName) + '\');';
   });
 
   importBlock = importBlock.join('\n');
 
   return importBlock;
+};
+
+const buildModulesExportBlock = (files) => {
+  let importBlock;
+
+  importBlock = _.map(files, (fileName) => {
+    return '  ' + safeVariableName(fileName) + ',';
+  });
+
+  importBlock = importBlock.join('\n');
+
+  return 'module.exports = {\n' + importBlock + '\n};';
 };
 
 export default (filePaths, options = {}) => {
@@ -49,6 +61,7 @@ export default (filePaths, options = {}) => {
     const sortedFilePaths = filePaths.sort();
 
     code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildModulesExportBlock(sortedFilePaths) + '\n\n';
   }
 
   return code;

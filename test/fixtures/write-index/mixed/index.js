@@ -1,5 +1,10 @@
 // @create-index
 
-export { default as bar } from './bar';
-export { default as foo } from './foo.js';
+const bar = require('./bar');
+const foo = require('./foo');
+
+module.exports = {
+  bar,
+  foo,
+};
 
