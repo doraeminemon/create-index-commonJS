@@ -4,7 +4,7 @@
     "name": "Gajus Kuizinas",
     "url": "http://gajus.com"
   },
-  "bin": "./dist/bin/create-index.js",
+  "bin": "./src/bin/create-index.js",
   "dependencies": {
     "chalk": "^1.1.3",
     "glob": "^7.1.1",
